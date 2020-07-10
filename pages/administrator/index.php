@@ -39,7 +39,6 @@
                   <th>Username</th>
                   <th>Password</th>
                   <th>Nama</th>
-                  <th>Level</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -50,7 +49,6 @@
                     <td><?= $row->administrator_username ?></td>
                     <td><?= $row->administrator_password ?></td>
                     <td><?= $row->administrator_nama ?></td>
-                    <td><?php echo ($row->administrator_level == '0') ? "Administrator" : "Tata Usaha" ?></td>
                     <td width="155px">
                       <a href="?p=pages/administrator/edit&id=<?= $row->administrator_id ?>" class="btn btn-sm btn-warning"><span class="fa fa-edit"></span></a>
                       <a onclick="return confirm('Anda Yakin Hapus ?')" href="?p=pages/administrator/delete&id=<?= $row->administrator_id ?>" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>

@@ -38,7 +38,7 @@ $dMhs = $db->getOneMahasiswa($_GET['id']);
           <!--Card content-->
           <div class="card-body">
             <a href="?p=pages/mahasiswa/add" class="btn btn-sm btn-primary">Tambah Data</a>
-            <a href="?p=pages/mahasiswa/edit&id=<?php $dMhs->mahasiswa_id ?>" class="btn btn-sm btn-warning">Edit</a>
+            <a href="?p=pages/mahasiswa/edit&id=<?= $dMhs->mahasiswa_id ?>" class="btn btn-sm btn-warning">Edit</a>
             <a href="?p=pages/mahasiswa/index" class="btn btn-sm btn-success">Kembali</a>
             <div class="row mt-3">
               <div class="col-md-6">

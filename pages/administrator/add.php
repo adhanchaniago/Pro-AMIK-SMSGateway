@@ -47,13 +47,14 @@
                 <input name="nama" id="nama" type="text" class="form-control" required>
               </div>
               <div class="form-group">
-                <label for="level">Level</label>
-                <select name="level" id="level" class="form-control" required>
+                <!-- <label for="level">Level</label> -->
+                <input type="hidden" name="level" value="0">
+                <!-- <select name="level" id="level" class="form-control" required>
                   <option value="">Pilih</option>
                   <option value="0">Administrator</option>
                   <option value="1">Dosen</option>
                   <option value="2">Tata Usaha</option>
-                </select>
+                </select> -->
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>

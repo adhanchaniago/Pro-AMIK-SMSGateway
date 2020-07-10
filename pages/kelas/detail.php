@@ -69,7 +69,7 @@
                     <td><?= ++$no ?></td>
                     <td><?= $data->mahasiswa_npm ?></td>
                     <td><?= $data->mahasiswa_nama ?></td>
-                    <td><?= $data->mahasiswa_jenis_kelamin ?></td>
+                    <td><?= ($data->mahasiswa_jenis_kelamin == 0) ? 'Laki-laki' : 'Perempuan' ?></td>
                     <td><?= $data->mahasiswa_nohp_ortu ?></td>
                     <td width="160px">
                       <a href="?p=pages/mahasiswa/detail&id=<?= $data->mahasiswa_id ?>" class="btn btn-sm btn-success"><span class="fa fa-search"></span></a>
