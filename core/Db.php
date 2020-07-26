@@ -1,4 +1,5 @@
 <?php
+// error_reporting(0);
 include('core/Conn.php');
 class Db extends Conn
 {
@@ -72,8 +73,7 @@ class Db extends Conn
                     JOIN tb_matakuliah
                     ON tb_kelas.matakuliah_id=tb_matakuliah.matakuliah_id
                     JOIN tb_dosen
-                    ON tb_matakuliah.dosen_id=tb_dosen.dosen_id
-";
+                    ON tb_matakuliah.dosen_id=tb_dosen.dosen_id";
 
         return $this->get($query);
     }
@@ -184,7 +184,7 @@ class Db extends Conn
         db_presensi_gateway.tb_matakuliah.matakuliah_sks As matakuliah_sks1,
         db_presensi_gateway.tb_kelas.kelas_nama,
         db_presensi_gateway.tb_kelas.kelas_mahasiswa
-    From
+        From
         db_presensi_gateway.tb_absensi Inner Join
         db_presensi_gateway.tb_kelas On db_presensi_gateway.tb_absensi.kelas_id = db_presensi_gateway.tb_kelas.kelas_id
         Inner Join
@@ -217,12 +217,10 @@ class Db extends Conn
         return $conn->query("INSERT INTO `tb_kelas` 
                                         (`kelas_nama`, 
                                         `matakuliah_id`, 
-                                        `kelas_tgl`, 
                                         `kelas_mahasiswa`)
                                         VALUES 
                                         ('$data[nama]', 
                                         '$data[matakuliah]', 
-                                        '$data[tgl]', 
                                         '$mahasiswa')
                                         ");
     }
@@ -268,6 +266,12 @@ class Db extends Conn
                                     `kelas_mahasiswa` = '$uMhs'
                                     WHERE
                                     `kelas_id` = '$idKelas'");
+    }
+
+    public function deleteKelas($id)
+    {
+        global $conn;
+        return $conn->query("DELETE FROM `tb_kelas` WHERE ((`kelas_id` = '$id'))");
     }
 
     // ================================================================================================

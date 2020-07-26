@@ -1,10 +1,10 @@
 <?php
-if ($db->deleteAdministrator($_GET['id']) > 0) {
+if ($db->deleteKelas($_GET['id']) > 0) {
     echo "<script>
-    location = 'index.php?p=pages/administrator/index';
+    location = 'index.php?p=pages/kelas/index';
     </script>";
 } else {
     echo "<script>
-    location = 'index.php?p=pages/administrator/index';
+    location = 'index.php?p=pages/kelas/index';
     </script>";
 }

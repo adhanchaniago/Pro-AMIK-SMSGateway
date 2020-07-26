@@ -37,6 +37,7 @@
 
             <!--Card content-->
             <div class="card-body">
+
               <div class="row">
                 <div class="col-md-6">
                   <h6>Dosen Pengajar : <?= $dKelas->dosen_nama ?></h6>
@@ -51,7 +52,7 @@
                 </div>
               </div>
               <h5>Mahasiswa dalam kelas <span class="text-primary"><?= $dKelas->kelas_nama ?></span></h5>
-              <table class="table table-bordered ">
+              <table id="myTable" class="table table-bordered ">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -71,7 +72,7 @@
                       <td><?= ++$no ?></td>
                       <td><?= $data->mahasiswa_npm ?></td>
                       <td><?= $data->mahasiswa_nama ?></td>
-                      <td><?= $data->mahasiswa_jenis_kelamin ?></td>
+                      <td><?= ($data->mahasiswa_jenis_kelamin == 0) ? "Laki-Laki" : "Perempuan" ?></td>
                       <td><?= $data->mahasiswa_nohp_ortu ?></td>
                       <td width="160px">
                         <a href="?p=pages/mahasiswa/detail&id=<?= $data->mahasiswa_id ?>" class="btn btn-sm btn-success"><span class="fa fa-search"></span></a>
@@ -112,7 +113,7 @@
               </form>
               <?php
               if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if ($db->editMahasiswaFromKelas($_POST) > 0) {
+                if ($db->saveKelas($_POST) > 0) {
                   echo "<script>
                 location='index.php?p=pages/kelas/add&id=$dKelas->kelas_id';
                 </script>";
@@ -196,25 +197,29 @@
                   </div>
                 </div>
                 <h6>List Mahasiswa</h6>
-                <table class="table table-bordered">
-                  <tr>
-                    <th>No</th>
-                    <th>NPM</th>
-                    <th>Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Tambah</th>
-                  </tr>
-                  <?php foreach ($db->getAllMahasiswa() as $no => $dMhs) : ?>
+                <table id="table_id" class="display table table-bordered">
+                  <thead>
                     <tr>
-                      <td><?= ++$no ?></td>
-                      <td><?= $dMhs->mahasiswa_npm ?></td>
-                      <td><?= $dMhs->mahasiswa_nama ?></td>
-                      <td><?= ($dMhs->mahasiswa_jenis_kelamin == 0) ? "Laki-Laki" : "Perempuan" ?></td>
-                      <td>
-                        <input type="checkbox" name="mhs[]" value="<?= $dMhs->mahasiswa_id ?>">
-                      </td>
+                      <th>No</th>
+                      <th>NPM</th>
+                      <th>Nama</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Tambah</th>
                     </tr>
-                  <?php endforeach ?>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($db->getAllMahasiswa() as $no => $dMhs) : ?>
+                      <tr>
+                        <td><?= ++$no ?></td>
+                        <td><?= $dMhs->mahasiswa_npm ?></td>
+                        <td><?= $dMhs->mahasiswa_nama ?></td>
+                        <td><?= ($dMhs->mahasiswa_jenis_kelamin == 0) ? "Laki-Laki" : "Perempuan" ?></td>
+                        <td>
+                          <input type="checkbox" name="mhs[]" value="<?= $dMhs->mahasiswa_id ?>">
+                        </td>
+                      </tr>
+                    <?php endforeach ?>
+                  </tbody>
                 </table>
                 <div class="form-group">
                   <button type="submit" class="btn btn-sm btn-primary">Save</button>
